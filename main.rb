@@ -1,5 +1,5 @@
 require 'sinatra'
-require 'sinatra/reloader'
+# require 'sinatra/reloader'
 require 'mechanize'
 require 'json'
 
@@ -13,10 +13,10 @@ get '/:query' do
 
   results = {}
   page.search('.links_main').each do |link|
-    results.store(link.at("a").inner_html.to_s.gsub("<b>","").gsub("</b>",""), link.at("a")[:href]).to_json
+    results.store(link.at("a").inner_html.to_s.gsub("<b>","").gsub("</b>",""), link.at("a")[:href])
   end
 
-  puts results
+  results.to_json
 end
 
 
